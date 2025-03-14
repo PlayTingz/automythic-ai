@@ -1,0 +1,26 @@
+{
+  "id": 3,
+  "item_type": "Scene",
+  "name": "Mystic Cavern",
+  "description": "A glowing cave filled with ancient runes. The walls shimmer with magical energy, illuminating the mysterious symbols carved into the stone.",
+  "price": 3000000000,
+  "image_url": "https://images.unsplash.com/photo-1688725906759-ee2576b3d2c9?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "attributes": [
+    {
+      "trait_type": "Environment",
+      "value": "Cave"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Magic Level",
+      "value": 80
+    },
+    {
+      "trait_type": "Danger Level",
+      "value": 65
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "item_type": "Weapon",
+  "name": "Excalibur",
+  "description": "A legendary sword of immense power. Said to have been wielded by the greatest kings of old.",
+  "price": 1000000000,
+  "image_url": "https://images.unsplash.com/photo-1623199971727-c59b8c11fdfd?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "trait_type": "Damage",
+      "value": 100
+    },
+    {
+      "trait_type": "Element",
+      "value": "Light"
+    },
+    {
+      "trait_type": "Level Requirement",
+      "value": 50
+    }
+  ]
+}
