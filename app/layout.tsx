@@ -4,6 +4,8 @@ import './globals.css'
 import { Toaster } from 'sonner'
 import { NearProvider } from './providers'
 import { Navigation } from '@/components/navigation'
+import { NetworkAlert } from '@/components/NetworkAlert'
+import { WalletDebugInfo } from '@/components/WalletDebugInfo'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,9 +18,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Automythic AI - AI-Powered RPG Adventures on NEAR Blockchain',
+  title: 'Automythic AI - AI-Powered RPG Adventures on Sonic Blockchain',
   description:
-    'Generate and play AI-powered RPG adventures on the NEAR blockchain. Create unique stories, own your characters as NFTs, and join a community of players.',
+    'Generate and play AI-powered RPG adventures on the Sonic blockchain. Create unique stories, own your characters as NFTs, and join a community of players.',
 }
 
 export default function RootLayout({
@@ -33,7 +35,9 @@ export default function RootLayout({
       >
         <NearProvider>
           <Navigation />
+          <NetworkAlert />
           {children}
+          <WalletDebugInfo />
           <Toaster />
         </NearProvider>
       </body>

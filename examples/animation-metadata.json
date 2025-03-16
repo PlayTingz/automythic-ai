@@ -1,0 +1,26 @@
+{
+  "id": 4,
+  "item_type": "Animation",
+  "name": "Spectral Fade",
+  "description": "A ghostly fade effect for your choices. This ethereal animation adds a supernatural touch to scene transitions, creating an atmosphere of mystery.",
+  "price": 2000000000,
+  "image_url": "https://images.unsplash.com/photo-1614852207293-8ddd724da274?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "attributes": [
+    {
+      "trait_type": "Effect Type",
+      "value": "Transition"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Uncommon"
+    },
+    {
+      "trait_type": "Duration",
+      "value": "2.5 seconds"
+    },
+    {
+      "trait_type": "Style",
+      "value": "Ethereal"
+    }
+  ]
+}

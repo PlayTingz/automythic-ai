@@ -31,7 +31,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
 
 # vercel
 .vercel
@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Rust/Anchor build artifacts
+/target/
+**/target/
+/dist/
+/test-ledger/
+
+# json files
+/wallets/admin.json
+/wallets/buyer.json

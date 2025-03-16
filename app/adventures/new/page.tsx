@@ -53,8 +53,8 @@ export default function NewAdventure() {
     const updatedArray = checked
       ? [...formData[field as keyof typeof formData], value]
       : (formData[field as keyof typeof formData] as string[]).filter(
-          (v) => v !== value
-        )
+        (v) => v !== value
+      )
     setFormData({ ...formData, [field]: updatedArray })
   }
 
@@ -86,13 +86,10 @@ export default function NewAdventure() {
         .replace(/[^a-z0-9-]/g, '')
 
       const adventurePrompt = `
-  Create a text-based adventure game with the title "${formData.name}" in the ${
-        formData.theme
-      } genre, Tone/Difficulty: "${formData.tone || 'moderate'}", Main Goal: "${
-        formData.goal
-      }", Endings: "${formData.endings.join(', ') || 'victory, failure'}${
-        formData.customEndings ? ', ' + formData.customEndings : ''
-      }".
+  Create a text-based adventure game with the title "${formData.name}" in the ${formData.theme
+        } genre, Tone/Difficulty: "${formData.tone || 'moderate'}", Main Goal: "${formData.goal
+        }", Endings: "${formData.endings.join(', ') || 'victory, failure'}${formData.customEndings ? ', ' + formData.customEndings : ''
+        }".
       
   Based on this user prompt: "${prompt}", 
   

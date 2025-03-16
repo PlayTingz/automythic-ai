@@ -1,0 +1,32 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+shop = "5F5gHfVH2p3YYgSuR42Bt2QBY7a6VmBV1CLXQwDmFBrF"
+
+[programs.devnet]
+shop = "5F5gHfVH2p3YYgSuR42Bt2QBY7a6VmBV1CLXQwDmFBrF"
+
+[programs.testnet]
+shop = "5F5gHfVH2p3YYgSuR42Bt2QBY7a6VmBV1CLXQwDmFBrF"
+
+[programs.mainnet]
+shop = "5F5gHfVH2p3YYgSuR42Bt2QBY7a6VmBV1CLXQwDmFBrF"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "testnet"
+wallet = "./wallets/admin.json"
+
+# Sonic RPC URLs
+[rpc_endpoints]
+devnet = "https://api.devnet.solana.com"
+testnet = "https://api.testnet.sonic.game"
+mainnet = "https://api.mainnet-alpha.sonic.game"
+helius = "https://sonic.helius-rpc.com/"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts" 

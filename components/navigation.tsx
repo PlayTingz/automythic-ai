@@ -1,26 +1,26 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X, Sword } from 'lucide-react' // Sword as a thematic icon
 import Link from 'next/link'
-import { WalletButton } from './WalletButton'
-import { NearContext } from '@/wallets/near'
+import { SolanaWalletButton } from './SolanaWalletButton'
+import { useWallet } from '@solana/wallet-adapter-react'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const { signedAccountId } = useContext(NearContext)
+  const { connected } = useWallet()
   const toggleMenu = () => setIsOpen(!isOpen)
-  const navLinks = signedAccountId
+  const navLinks = connected
     ? [
-        { href: '/', label: 'Home' },
-        { href: '/shop', label: 'Shop' },
-        { href: '/about', label: 'About' },
-      ]
+      { href: '/', label: 'Home' },
+      { href: '/shop', label: 'Shop' },
+      { href: '/about', label: 'About' },
+    ]
     : [
-        { href: '/', label: 'Home' },
-        { href: '/about', label: 'About' },
-      ]
+      { href: '/', label: 'Home' },
+      { href: '/about', label: 'About' },
+    ]
   return (
     <nav className="fixed w-full bg-black/80 backdrop-blur-sm z-50 border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +53,7 @@ export function Navigation() {
                 Create Adventure
               </Button>
             </Link>
-            <WalletButton />
+            <SolanaWalletButton />
           </div>
 
           {/* Mobile Menu Button */}
@@ -97,7 +97,7 @@ export function Navigation() {
               </Button>
             </Link>
             <div className="px-3 py-2">
-              <WalletButton className="w-full" />
+              <SolanaWalletButton className="w-full" />
             </div>
           </div>
         </div>

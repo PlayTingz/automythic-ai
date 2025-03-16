@@ -1,36 +1,161 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Item Shop on Solana
 
-## Getting Started
+A Solana smart contract for a digital item shop that allows:
 
-First, run the development server:
+- Admin to add items with metadata stored on IPFS via NFT.Storage
+- Users to purchase items with SOL
+- Tracking purchase history for each user
+
+## Project Structure
+
+- `programs/shop/src/lib.rs` - Solana program (smart contract)
+- `scripts/upload-metadata.js` - Script to upload metadata to NFT.Storage
+- `examples/` - Example items
+- `scripts/shop-client.js` - Client script to interact with the Solana program
+- `scripts/generate-wallet.js` - Script to generate a Solana wallet keypair
+
+## Setup
+
+1. Clone the repository
+2. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Copy the environment variables template:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Edit `.env` and add your NFT.Storage API key and other settings
 
-## Learn More
+> **Note:** This project uses ES modules. Make sure you're using Node.js version 14.16.0 or later.
 
-To learn more about Next.js, take a look at the following resources:
+## Generating a Wallet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You need a wallet keypair to deploy and interact with your contract. Use our script to generate one:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+node scripts/generate-wallet.js
+```
 
-## Deploy on Vercel
+This will:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Create a `wallets` directory if it doesn't exist
+- Generate a new Solana keypair
+- Save it to `wallets/admin.json`
+- Display the public key
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Make sure to fund this wallet with SOL on the Sonic network you're using.
+
+For testnet, you can get SOL from the faucet: https://faucet.sonic.game
+
+## Sonic Networks
+
+This project supports multiple Sonic networks:
+
+- **Testnet**: `https://api.testnet.sonic.game`
+- **Mainnet Alpha**: `https://api.mainnet-alpha.sonic.game`
+- **Helius RPC**: `https://sonic.helius-rpc.com/`
+
+You can get testnet SOL from the faucet: `https://faucet.sonic.game`
+
+## Building and Deploying
+
+```bash
+node scripts/deploy.js
+```
+
+The deploy script will:
+
+- Build the program
+- Get the program ID
+- Update the program ID in the .env file
+- Deploy to the specified Sonic network (default testnet)
+
+## Using the Shop
+
+### Initialize the Shop
+
+```bash
+# On testnet (default)
+node scripts/shop-client.js init
+```
+
+### Add an Item to the Shop (might take a couple of seconds to upload to the contract)
+
+```bash
+# On testnet
+node scripts/add-item-with-metadata.js testnet examples/character-metadata.json
+```
+
+### Purchase an Item
+
+```bash
+# On testnet
+node scripts/shop-client.js purchase 1
+
+```
+
+### View Item Details
+
+```bash
+# On testnet
+node scripts/shop-client.js get-item 1
+```
+
+### View Purchase History
+
+```bash
+# On testnet
+node scripts/shop-client.js get-history
+```
+
+## Data Structures
+
+### Shop Account (PDA)
+
+```rust
+pub struct Shop {
+    pub admin: Pubkey,
+    pub item_count: u64,
+}
+```
+
+### Item Account (PDA)
+
+```rust
+pub struct Item {
+    pub id: u64,
+    pub price: u64,
+    pub metadata_uri: String,
+}
+```
+
+### Purchase History Account (PDA)
+
+```rust
+pub struct PurchaseHistory {
+    pub user: Pubkey,
+    pub purchases: Vec<PurchaseRecord>,
+}
+
+pub struct PurchaseRecord {
+    pub item_id: u64,
+    pub timestamp: i64,
+}
+```
+
+## Viewing Transactions
+
+You can view your transactions on the Sonic Block Explorer:
+
+```
+https://explorer.sonic.game
+```
+
+## License
+
+MIT
